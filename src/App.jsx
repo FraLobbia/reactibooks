@@ -6,13 +6,18 @@ import BookList from "./components/BookList";
 import MyFooter from "./components/MyFooter";
 import { Container, Row } from "react-bootstrap";
 import { Component } from "react";
-
 import fantasy from "./data/fantasy.json";
 import CommentArea from "./components/CommentArea";
-const endpoint = "https://striveschool-api.herokuapp.com/api/comments/";
+
 class App extends Component {
 	state = {
 		data: [],
+		asin: null,
+	};
+
+	setAppState = (selectedItem) => {
+		// selectedItem sarà "First", "Third" ecc....
+		this.setState({ asin: selectedItem });
 	};
 
 	render() {
@@ -24,12 +29,15 @@ class App extends Component {
 					<Row>
 						<BookList
 							books={fantasy}
+							setAppState={this.setAppState}
 							colonne={6}
 						/>
-						<CommentArea
-							asin={"0316389706"}
-							colonne={6}
-						/>
+						{this.state.asin && (
+							<CommentArea
+								asin={this.state.asin}
+								colonne={6}
+							/>
+						)}
 					</Row>
 				</Container>
 				<MyFooter />

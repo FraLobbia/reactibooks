@@ -43,7 +43,10 @@ class BookList extends Component {
 								xl={4}
 								key={b.asin}
 							>
-								<SingleBook book={b} />
+								<SingleBook
+									setAppState={this.props.setAppState}
+									book={b}
+								/>
 							</Col>
 						))}
 				</Row>

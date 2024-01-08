@@ -9,10 +9,11 @@ class SingleBook extends Component {
 	render() {
 		return (
 			<>
+				{console.log(this.props)}
 				<Card
 					onClick={() => {
 						this.setState({ selected: !this.state.selected });
-						this.props.setAppState(this.props.book.asin);
+						this.props.setAppStateAsin(this.props.book.asin);
 					}}
 					style={{
 						border: this.state.selected ? "3px solid red" : "none",
@@ -28,7 +29,6 @@ class SingleBook extends Component {
 						</Card.Title>
 					</Card.Body>
 				</Card>
-				{/* {this.state.selected && <CommentArea asin={this.props.book.asin} />} */}
 			</>
 		);
 	}

@@ -44,7 +44,7 @@ class BookList extends Component {
 								key={b.asin}
 							>
 								<SingleBook
-									setAppState={this.props.setAppState}
+									setAppStateAsin={this.props.setAppStateAsin}
 									book={b}
 								/>
 							</Col>

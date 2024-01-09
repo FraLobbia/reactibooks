@@ -8,7 +8,6 @@ import { Container, Row } from "react-bootstrap";
 import { Component } from "react";
 import fantasy from "./data/fantasy.json";
 import CommentArea from "./components/CommentArea";
-import CommentList from "./components/CommentList";
 
 class App extends Component {
 	state = {
@@ -17,7 +16,6 @@ class App extends Component {
 	};
 
 	setAppStateAsin = (selectedItem) => {
-		// selectedItem sarà "First", "Third" ecc....
 		this.setState({ asin: selectedItem });
 	};
 
@@ -34,8 +32,8 @@ class App extends Component {
 							colonne={6}
 						/>
 						{this.state.asin && (
-							<CommentList
-								commentsToShow={this.state.comments}
+							<CommentArea
+								asin={this.state.asin}
 								colonne={6}
 							/>
 						)}

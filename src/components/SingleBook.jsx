@@ -6,10 +6,12 @@ class SingleBook extends Component {
 		selected: false,
 	};
 
+	componentDidUpdate = () => {
+		// this.props.setAppStateAsin(this.props.book.asin);
+	};
 	render() {
 		return (
 			<>
-				{console.log(this.props)}
 				<Card
 					onClick={() => {
 						this.setState({ selected: !this.state.selected });

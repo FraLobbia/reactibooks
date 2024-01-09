@@ -1,6 +1,5 @@
 import { Component } from "react";
 import CommentList from "./CommentList";
-import AddComment from "./AddComment";
 import Loading from "./Loading";
 import Error from "./Error";
 import { token } from "./token";
@@ -13,7 +12,7 @@ class CommentArea extends Component {
 		isError: false,
 	};
 
-	componentDidMount = async () => {
+	fecthingData = async () => {
 		try {
 			let response = await fetch(
 				"https://striveschool-api.herokuapp.com/api/comments/" +
@@ -44,16 +43,28 @@ class CommentArea extends Component {
 		}
 	};
 
+	componentDidUpdate = (prevProps) => {
+		if (this.props.asin !== prevProps.asin) {
+			this.fecthingData();
+		}
+	};
+
+	componentDidMount = () => {
+		this.fecthingData();
+	};
+
 	render() {
 		return (
-			<Col xs={this.props.colonne}>
-				<div className="text-center">
-					{this.state.isLoading && <Loading />}
-					{this.state.isError && <Error />}
-					<AddComment asin={this.props.asin} />
-					<CommentList commentsToShow={this.state.comments} />
-				</div>
-			</Col>
+			<>
+				<Col xs={this.props.colonne}>
+					<div className="text-center">
+						{this.state.isLoading && <Loading />}
+						{this.state.isError && <Error />}
+						{/* <AddComment asin={this.props.asin} /> */}
+						<CommentList commentsToShow={this.state.comments} />
+					</div>
+				</Col>
+			</>
 		);
 	}
 }
